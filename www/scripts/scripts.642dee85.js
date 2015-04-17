@@ -34,37 +34,42 @@ angular
 angular.module('angularCordovaApp')
   .controller('MainCtrl', function($scope, cordova, $cordovaDevice) {  
 
- var initAzure = function()
- {
- 	var connectionString = "Endpoint=sb://cordovaazure-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=ksQwMAUxCHHh2+bo2PQlq9leeGoU5HQ1tK8teDyibek=",
-    notificationHubPath = "cordovaazure";
+  	var platform = null;
 
-    var GCM_NUM_PRJ = "147654994312";
+	var initAzure = function()
+	{
+		var connectionString = "[votre chaîne de connexion azure 'listen']",
+		notificationHubPath = "[le nom de votre hub]"; //ici le hub = cordovaazure
 
-    var options = null;
-    options = GCM_NUM_PRJ;
+		var GCM_NUM_PRJ = "[votre numéro de projet Google]";//le numéro de projet est affiché dans la rubrique "Présentation" de votre projet
 
-	var hub = new WindowsAzure.Messaging.NotificationHub(notificationHubPath, connectionString);
-
-	hub.registerApplicationAsync().then(
-		function (result) 
+		var options = null;
+		if(platform==='android')
 		{
-	    	$scope.registrationOk = result.registrationId;
-		},
-		function(error)
-		{
-			$scope.registrationKo = error;
+			options = GCM_NUM_PRJ;
 		}
-	);
 
-	hub.onPushNotificationReceived = function (msg) {
-	    $scope.notificationText = msg;
-	};;
- } 	
+		var hub = new WindowsAzure.Messaging.NotificationHub(notificationHubPath, connectionString);
 
-  cordova.ready.then(function () {
-      initAzure();
-  });
+		hub.registerApplicationAsync().then(
+			function (result) 
+			{
+		    	$scope.registrationOk = result.registrationId;
+			},
+			function(error)
+			{
+				$scope.registrationKo = error;
+			}
+		);	
+
+		hub.onPushNotificationReceived = function (msg) {
+		    $scope.notificationText = msg;
+		};;
+	} 	
+	cordova.ready.then(function () {
+		platform = $cordovaDevice.getPlatform().toLowerCase();
+		initAzure();
+	});
   
 });
 

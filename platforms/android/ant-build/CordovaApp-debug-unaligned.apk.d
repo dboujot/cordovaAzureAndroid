@@ -2,5 +2,7 @@ D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\ant-build\Cordov
 D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\ant-build\CordovaApp.ap_ \
 D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\ant-build\classes.dex \
 D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\CordovaLib\ant-build\classes.jar \
+D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\libs\gcm.jar \
 D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\libs\google-play-services.jar \
+D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\libs\android-support-v13.jar \
 D:\NETAPSYS\BLOG\CordovaAzure\angular-cordova\platforms\android\libs\notification-hubs-0.1.jar \
