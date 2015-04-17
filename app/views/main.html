@@ -1,0 +1,17 @@
+<div  style="text-align:center">
+  <h1>
+    <img src="images/cordova.png" height="150px"> <img src="images/azure.png" height="150px">
+  <h1>
+  <h4 ng-if="registrationOk" style="color:green">Inscription azure ok! <h4>  
+  <h4 ng-if="registrationOk" style="color:green">Registration id : {{registrationOk}}<h4>  
+  <h4 ng-if="registrationKo" style="color:red">Inscription azure erreur!<h4>  
+  <h4 ng-if="registrationKo" style="color:red">{{registrationKo}}<h4>  
+  <div ng-if="notificationText">  
+    <h3>
+      Une nouvelle notification!  
+    </h3>
+    <p>  
+    <i style="color:gray">{{notificationText}}</i>
+    </p>
+  </div>
+</div>

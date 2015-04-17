@@ -1,0 +1,6 @@
+# view AndroidManifest.xml #generated:6
+-keep class com.example.angularcordova.CordovaApp { <init>(...); }
+
+# view AndroidManifest.xml #generated:12
+-keep class msopentech.azure.NotificationHub$PushNotificationReceiver { <init>(...); }
+
