@@ -27,7 +27,11 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
+  }]);
+
 
 'use strict';
 
@@ -38,10 +42,10 @@ angular.module('angularCordovaApp')
 
 	var initAzure = function()
 	{
-		var connectionString = "[votre chaîne de connexion azure 'listen']",
-		notificationHubPath = "[le nom de votre hub]"; //ici le hub = cordovaazure
+		var connectionString = "Endpoint=sb://cordovaazure-ns.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=ksQwMAUxCHHh2+bo2PQlq9leeGoU5HQ1tK8teDyibek=",
+		notificationHubPath = "cordovaazure"; //ici le hub = cordovaazure
 
-		var GCM_NUM_PRJ = "[votre numéro de projet Google]";//le numéro de projet est affiché dans la rubrique "Présentation" de votre projet
+		var GCM_NUM_PRJ = "147654994312";//le numéro de projet est affiché dans la rubrique "Présentation" de votre projet
 
 		var options = null;
 		if(platform==='android')
@@ -49,25 +53,31 @@ angular.module('angularCordovaApp')
 			options = GCM_NUM_PRJ;
 		}
 
-		var hub = new WindowsAzure.Messaging.NotificationHub(notificationHubPath, connectionString);
+		var hub = new WindowsAzure.Messaging.NotificationHub(notificationHubPath, connectionString, options);
 
 		hub.registerApplicationAsync().then(
 			function (result) 
 			{
 		    	$scope.registrationOk = result.registrationId;
+		    	$scope.$apply();
 			},
 			function(error)
 			{
 				$scope.registrationKo = error;
+		    	$scope.$apply();
 			}
 		);	
 
-		hub.onPushNotificationReceived = function (msg) {
-		    $scope.notificationText = msg;
+
+		hub.onPushNotificationReceived = function (notification) {
+			//évènement à la réception d'une notification
+		    $scope.notificationText = notification.message;
+		    	$scope.$apply();
 		};;
 	} 	
+	//$scope.registrationOk = 'ok';
 	cordova.ready.then(function () {
-		platform = $cordovaDevice.getPlatform().toLowerCase();
+		platform = $cordovaDevice.getPlatform().toLowerCase();		
 		initAzure();
 	});
   

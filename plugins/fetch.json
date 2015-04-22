@@ -1,0 +1,22 @@
+{
+    "msopentech.azure.NotificationHub": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sgrebnov/cordova-plugin-azure-notificationhub.git",
+            "subdir": "."
+        }
+    },
+    "com.google.playservices": {
+        "source": {
+            "type": "registry",
+            "id": "com.google.playservices@19.0.0"
+        }
+    },
+    "com.phonegap.plugins.PushPlugin": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/dboujot/PushPlugin.git",
+            "subdir": "."
+        }
+    }
+}

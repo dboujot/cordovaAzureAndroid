@@ -27,4 +27,8 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+  .config(['$compileProvider', function ($compileProvider) {
+    $compileProvider.debugInfoEnabled(false);
+  }]);
+
